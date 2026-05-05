@@ -1,0 +1,348 @@
+<!DOCTYPE html>
+<html lang="de">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Isomake | Isometrische Rohrleitungsplanung, radikal vereinfacht.</title>
+    <style>
+        @font-face {
+            font-family: 'Inter';
+            src: url('fonts/Inter_24pt-Regular.ttf') format('truetype');
+            font-weight: 400;
+            font-style: normal;
+        }
+
+        @font-face {
+            font-family: 'Inter';
+            src: url('fonts/Inter_24pt-SemiBold.ttf') format('truetype');
+            font-weight: 600;
+            font-style: normal;
+        }
+
+        *,
+        *::before,
+        *::after {
+            box-sizing: border-box;
+            margin: 0;
+            padding: 0;
+        }
+
+        body {
+            font-family: 'Inter', sans-serif;
+            background: #121212;
+            color: #e0e0e0;
+            line-height: 1.6;
+            display: flex;
+            flex-direction: column;
+            min-height: 100vh;
+        }
+
+        header {
+            padding: 24px 48px;
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+        }
+
+        .logo {
+            font-size: 1.5rem;
+            font-weight: 600;
+            color: #ffffff;
+            text-decoration: none;
+            letter-spacing: -0.5px;
+            display: flex;
+            align-items: center;
+            gap: 10px;
+        }
+
+        .logo img {
+            width: 36px;
+            height: 36px;
+            border-radius: 6px;
+        }
+
+        .nav-contact {
+            color: #ffffff;
+            text-decoration: none;
+            font-weight: 500;
+            padding: 8px 18px;
+            border: 1px solid #333;
+            border-radius: 6px;
+            transition: all 0.2s;
+            background: #1a1a1a;
+        }
+
+        .nav-contact:hover {
+            background: #333;
+            border-color: #444;
+        }
+
+        .hero {
+            text-align: center;
+            padding: 100px 20px;
+            max-width: 900px;
+            margin: 0 auto;
+        }
+
+        .hero h1 {
+            font-size: 3.2rem;
+            font-weight: 600;
+            color: #ffffff;
+            margin-bottom: 24px;
+            line-height: 1.1;
+            letter-spacing: -1px;
+        }
+
+        .hero p {
+            font-size: 1.25rem;
+            color: #9e9e9e;
+            margin-bottom: 44px;
+            max-width: 650px;
+            margin-left: auto;
+            margin-right: auto;
+        }
+
+        .cta-buttons {
+            display: flex;
+            justify-content: center;
+            gap: 16px;
+        }
+
+        .btn-primary {
+            background: #f5f5f5;
+            color: #121212;
+            padding: 18px 36px;
+            font-size: 1.1rem;
+            font-weight: 600;
+            text-decoration: none;
+            border-radius: 8px;
+            transition: background 0.2s;
+        }
+
+        .btn-primary:hover {
+            background: #cfd8dc;
+        }
+
+        .trial-note {
+            display: block;
+            margin-top: 14px;
+            font-size: 0.85rem;
+            color: #616161;
+        }
+
+        .features {
+            display: grid;
+            grid-template-columns: repeat(auto-fit, minmax(300px, 1fr));
+            gap: 24px;
+            padding: 60px 48px;
+            max-width: 1200px;
+            margin: 0 auto;
+        }
+
+        .feature-card {
+            background: #1a1a1a;
+            padding: 40px;
+            border-radius: 12px;
+            border: 1px solid #222;
+            transition: border-color 0.2s;
+        }
+
+        .feature-card:hover {
+            border-color: #333;
+        }
+
+        .feature-card h3 {
+            color: #ffffff;
+            font-size: 1.25rem;
+            margin-bottom: 16px;
+        }
+
+        .feature-card p {
+            color: #888;
+            font-size: 0.95rem;
+            line-height: 1.7;
+        }
+
+        .pricing {
+            padding: 80px 20px;
+            text-align: center;
+        }
+
+        .pricing h2 {
+            font-size: 2.2rem;
+            color: #ffffff;
+            margin-bottom: 16px;
+            letter-spacing: -0.5px;
+        }
+
+        .pricing-subtitle {
+            color: #9e9e9e;
+            margin-bottom: 48px;
+            font-size: 1.1rem;
+        }
+
+        .pricing-card {
+            background: #1a1a1a;
+            max-width: 450px;
+            margin: 0 auto;
+            padding: 48px;
+            border-radius: 16px;
+            border: 1px solid #333;
+            box-shadow: 0 10px 30px rgba(0, 0, 0, 0.5);
+            transition: border-color 0.2s;
+        }
+
+        .pricing-card:hover {
+            border-color: #444;
+        }
+
+        .pricing-card h3 {
+            font-size: 1.5rem;
+            color: #ffffff;
+            margin-bottom: 8px;
+        }
+
+        .price {
+            font-size: 3.2rem;
+            font-weight: 600;
+            color: #ffffff;
+            margin-bottom: 24px;
+            letter-spacing: -1.5px;
+        }
+
+        .price span {
+            font-size: 1rem;
+            color: #888;
+            font-weight: 400;
+            letter-spacing: 0;
+            display: block;
+            margin-top: -5px;
+        }
+
+        .pricing-list {
+            list-style: none;
+            text-align: left;
+            margin-bottom: 32px;
+        }
+
+        .pricing-list li {
+            color: #e0e0e0;
+            margin-bottom: 14px;
+            padding-left: 32px;
+            position: relative;
+        }
+
+        .pricing-list li::before {
+            content: '✓';
+            color: #f5f5f5;
+            position: absolute;
+            left: 0;
+            font-weight: bold;
+        }
+
+        .pricing-card .btn-primary {
+            display: block;
+            width: 100%;
+            margin-bottom: 16px;
+        }
+
+        footer {
+            margin-top: auto;
+            padding: 60px 40px;
+            text-align: center;
+            border-top: 1px solid #222;
+        }
+
+        .footer-links {
+            display: flex;
+            justify-content: center;
+            gap: 32px;
+        }
+
+        .footer-links a {
+            color: #616161;
+            text-decoration: none;
+            font-size: 0.85rem;
+            transition: color 0.2s;
+        }
+
+        .footer-links a:hover {
+            color: #f5f5f5;
+        }
+    </style>
+</head>
+
+<body>
+
+    <header>
+        <a href="./index.html" class="logo"><img src="MR_Logo.png" alt="Isomake Logo">Isomake</a>
+        <a href="mailto:kontakt@isomake.de" class="nav-contact">Kontakt</a>
+    </header>
+
+    <main>
+        <section class="hero">
+            <h1>Isometrische Rohrleitungsplanung, radikal vereinfacht.</h1>
+            <p>Isomake ist ein Desktop-Programm für professionelle, baustellengerechte 2D-Isometrien. Keine teure
+                CAD-Software, keine wochenlange Schulung – du arbeitest direkt auf deinem Rechner.</p>
+
+            <div class="cta-buttons">
+                <a href="mailto:kontakt@isomake.de?subject=Anfrage%20Isomake%20Desktop%20Abo&body=Hallo%20Michael,%0A%0Aich%20interessiere%20mich%20für%20Isomake%20als%20Desktop-Programm%20(Abonnement).%0A%0AMein%20Name:%0AMeine%20Firma:%0A%0AKurz%20zu%20meinem%20Einsatz:"
+                    class="btn-primary">Testversion anfragen</a>
+            </div>
+            <span class="trial-note">Schreib uns kurz per E-Mail – wir melden uns mit den nächsten Schritten.</span>
+        </section>
+
+        <section class="features">
+            <div class="feature-card">
+                <h3>⚡ Von der Skizze zum digitalen Plan</h3>
+                <p>Das 2D-Raster ist perfekt auf den Rohrleitungsbau abgestimmt. Übertrage schnelle Handskizzen oder
+                    Aufmaße aus dem Betrieb in Rekordzeit in saubere, digitale Plandaten – ganz ohne Einarbeitung.</p>
+            </div>
+            <div class="feature-card">
+                <h3>🏗️ Baustellengerechte Umsetzung</h3>
+                <p>Verabschiede dich von schwer lesbaren Zetteln. Isomake liefert klare, auf das Wesentliche reduzierte
+                    2D-Isometrien, die jeder Monteur vor Ort sofort versteht und fehlerfrei umsetzen kann.</p>
+            </div>
+            <div class="feature-card">
+                <h3>💻 Lokal auf deinem Rechner</h3>
+                <p>Die Anwendung läuft als installiertes Programm auf deinem Gerät. Deine Projekte bleiben bei dir –
+                    ohne Browser-Zwang und ohne Konto auf dieser Infoseite.</p>
+            </div>
+        </section>
+
+        <section class="pricing">
+            <h2>Klar. Fair. Transparent.</h2>
+            <p class="pricing-subtitle">Nutzung erfolgt per <strong>Abonnement</strong> – Entgelt und Laufzeit legen wir
+                mit dir individuell fest. Unverbindlich per E-Mail melden.</p>
+
+            <div class="pricing-card">
+                <h3>Isomake Desktop</h3>
+                <div class="price">Auf Anfrage</div>
+
+                <ul class="pricing-list">
+                    <li>2D-Isometrie-Zeichenbrett für den Rohrleitungsbau</li>
+                    <li>Projekte lokal auf deinem Rechner</li>
+                    <li>Gewerbliche Nutzung im vereinbarten Abo</li>
+
+                </ul>
+
+                <a href="mailto:kontakt@isomake.de?subject=Anfrage%20Isomake%20Desktop%20Abo&body=Hallo%20Michael,%0A%0Aich%20interessiere%20mich%20für%20Isomake%20als%20Desktop-Programm%20(Abonnement).%0A%0AMein%20Name:%0AMeine%20Firma:%0A%0AKurz%20zu%20meinem%20Einsatz:"
+                    class="btn-primary">Kontakt aufnehmen</a>
+                <span class="trial-note">Diese Seite dient nur der Information; Abo und Vertrieb laufen per
+                    E-Mail.</span>
+            </div>
+        </section>
+    </main>
+
+    <footer>
+        <div class="footer-links">
+            <a href="./impressum.html" target="_blank" rel="noopener noreferrer">Impressum</a>
+            <a href="./datenschutz.html" target="_blank" rel="noopener noreferrer">Datenschutz</a>
+            <a href="./agb.html" target="_blank" rel="noopener noreferrer">AGB</a>
+        </div>
+    </footer>
+
+</body>
+
+</html>
