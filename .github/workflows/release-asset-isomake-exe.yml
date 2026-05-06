@@ -1,0 +1,21 @@
+name: Release asset Isomake.exe
+
+on:
+  release:
+    types: [published]
+
+jobs:
+  verify-filename:
+    runs-on: ubuntu-latest
+    permissions:
+      contents: read
+    steps:
+      - name: Require release asset named exactly Isomake.exe
+        env:
+          GH_TOKEN: ${{ github.token }}
+        run: |
+          tag="${{ github.event.release.tag_name }}"
+          if ! printf '%s\n' "$(gh release view "$tag" --json assets -q '.assets[].name')" | grep -Fqx 'Isomake.exe'; then
+            echo '::error::Attach the Windows build as a release asset with the exact filename Isomake.exe (capital I). The website links to .../releases/latest/download/Isomake.exe'
+            exit 1
+          fi
