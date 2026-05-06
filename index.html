@@ -106,6 +106,7 @@
         .cta-buttons {
             display: flex;
             justify-content: center;
+            flex-wrap: wrap;
             gap: 16px;
         }
 
@@ -122,6 +123,23 @@
 
         .btn-primary:hover {
             background: #cfd8dc;
+        }
+
+        .btn-secondary {
+            background: transparent;
+            color: #f5f5f5;
+            padding: 18px 36px;
+            font-size: 1.1rem;
+            font-weight: 600;
+            text-decoration: none;
+            border-radius: 8px;
+            border: 2px solid #555;
+            transition: background 0.2s, border-color 0.2s;
+        }
+
+        .btn-secondary:hover {
+            background: #2a2a2a;
+            border-color: #888;
         }
 
         .trial-note {
@@ -287,6 +305,9 @@
                 CAD-Software, keine wochenlange Schulung – du arbeitest direkt auf deinem Rechner.</p>
 
             <div class="cta-buttons">
+                <a href="https://github.com/Michaelr885/Isomake-Landingpage/releases/latest/download/Isomake.exe"
+                    class="btn-secondary" download="Isomake.exe" target="_blank"
+                    rel="noopener noreferrer">Installer herunterladen (Isomake.exe)</a>
                 <a href="mailto:kontakt@isomake.de?subject=Anfrage%20Isomake%20Desktop%20Abo&body=Hallo%20Michael,%0A%0Aich%20interessiere%20mich%20für%20Isomake%20als%20Desktop-Programm%20(Abonnement).%0A%0AMein%20Name:%0AMeine%20Firma:%0A%0AKurz%20zu%20meinem%20Einsatz:"
                     class="btn-primary">Testversion anfragen</a>
             </div>
