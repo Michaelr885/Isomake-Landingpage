@@ -183,6 +183,134 @@
             line-height: 1.7;
         }
 
+        .product-shots {
+            max-width: 800px;
+            margin: 0 auto;
+            padding: 0 32px 28px;
+        }
+
+        .product-shots .section-heading {
+            color: #8a8a8a;
+            font-size: 0.95rem;
+            font-weight: 500;
+            text-align: center;
+            margin-bottom: 14px;
+            letter-spacing: 0.02em;
+        }
+
+        .shot-grid {
+            display: grid;
+            grid-template-columns: repeat(auto-fit, minmax(140px, 1fr));
+            gap: 10px;
+        }
+
+        .shot-thumb {
+            position: relative;
+            display: block;
+            width: 100%;
+            padding: 0;
+            margin: 0;
+            border: 1px solid #242424;
+            border-radius: 8px;
+            overflow: hidden;
+            cursor: zoom-in;
+            background: #161616;
+            transition: border-color 0.2s ease, box-shadow 0.2s ease;
+        }
+
+        .shot-thumb:hover {
+            border-color: #353535;
+            box-shadow: 0 2px 14px rgba(0, 0, 0, 0.35);
+        }
+
+        .shot-thumb img {
+            display: block;
+            width: 100%;
+            height: 200px;
+            object-fit: cover;
+            object-position: center top;
+        }
+
+        .lightbox {
+            padding: 0;
+            border: none;
+            background: transparent;
+            max-width: none;
+            max-height: none;
+            width: 100%;
+            height: 100%;
+            max-width: 100vw;
+            max-height: 100vh;
+            margin: 0;
+        }
+
+        .lightbox::backdrop {
+            background: rgba(0, 0, 0, 0.88);
+            cursor: zoom-out;
+        }
+
+        .lightbox-panel {
+            position: relative;
+            min-height: 100vh;
+            width: 100%;
+            box-sizing: border-box;
+            padding: 56px 16px 24px;
+            display: flex;
+            flex-direction: column;
+            align-items: center;
+            justify-content: center;
+            gap: 12px;
+        }
+
+        .lightbox-close {
+            position: fixed;
+            top: 16px;
+            right: 16px;
+            z-index: 2;
+            width: 44px;
+            height: 44px;
+            border: 1px solid #444;
+            border-radius: 8px;
+            background: #1e1e1e;
+            color: #f5f5f5;
+            font-size: 1.5rem;
+            line-height: 1;
+            cursor: pointer;
+            transition: background 0.2s, border-color 0.2s;
+        }
+
+        .lightbox-close:hover {
+            background: #2a2a2a;
+            border-color: #666;
+        }
+
+        .lightbox-img {
+            max-width: min(96vw, 1400px);
+            max-height: min(85vh, 900px);
+            width: auto;
+            height: auto;
+            object-fit: contain;
+            border-radius: 8px;
+            box-shadow: 0 12px 48px rgba(0, 0, 0, 0.5);
+        }
+
+        .lightbox-dismiss {
+            border: 1px solid #444;
+            background: #1a1a1a;
+            color: #bdbdbd;
+            padding: 10px 20px;
+            border-radius: 8px;
+            font-size: 0.9rem;
+            font-family: inherit;
+            cursor: pointer;
+            transition: background 0.2s, color 0.2s;
+        }
+
+        .lightbox-dismiss:hover {
+            background: #262626;
+            color: #f5f5f5;
+        }
+
         footer {
             margin-top: auto;
             padding: 60px 40px;
@@ -205,6 +333,27 @@
 
         .footer-links a:hover {
             color: #f5f5f5;
+        }
+
+        @media (max-width: 640px) {
+            header {
+                padding: 16px 20px;
+            }
+
+            .product-shots {
+                padding: 0 20px 22px;
+            }
+        }
+
+        a:focus:not(:focus-visible),
+        button:focus:not(:focus-visible) {
+            outline: none;
+        }
+
+        a:focus-visible,
+        button:focus-visible {
+            outline: 2px solid #81d4fa;
+            outline-offset: 3px;
         }
     </style>
 </head>
@@ -230,6 +379,24 @@
                     class="btn-primary">Testversion anfragen</a>
             </div>
             <span class="trial-note">Schreib mir kurz per E-Mail – ich melde mich mit den nächsten Schritten.</span>
+        </section>
+
+        <section class="product-shots" aria-labelledby="product-shots-heading">
+            <h2 id="product-shots-heading" class="section-heading">So sieht Isomake aus</h2>
+            <div class="shot-grid">
+                <button type="button" class="shot-thumb" data-lightbox-open
+                    aria-label="Größere Ansicht: Isomake Hauptfenster mit Werkzeugleisten und isometrischer Rohrzeichnung">
+                    <img src="images/screenshot-app.png" width="1200" height="675" loading="lazy" alt="">
+                </button>
+                <button type="button" class="shot-thumb" data-lightbox-open
+                    aria-label="Größere Ansicht: Isometrische Rohrleitung mit Bemaßung und Positionsnummern">
+                    <img src="images/screenshot-plan.png" width="1200" height="675" loading="lazy" alt="">
+                </button>
+                <button type="button" class="shot-thumb" data-lightbox-open
+                    aria-label="Größere Ansicht: Dialog Stückliste mit Bauteilen, Mengen und Längen">
+                    <img src="images/screenshot-stueckliste.png" width="1200" height="675" loading="lazy" alt="">
+                </button>
+            </div>
         </section>
 
         <section class="features">
@@ -258,6 +425,69 @@
             <a href="./agb.html">AGB</a>
         </div>
     </footer>
+
+    <dialog id="lightbox" class="lightbox" aria-label="Screenshot vergrößert">
+        <div class="lightbox-panel">
+            <button type="button" class="lightbox-close" data-lightbox-close aria-label="Schließen">&times;</button>
+            <img class="lightbox-img" src="" alt="" width="1400" height="900">
+            <button type="button" class="lightbox-dismiss" data-lightbox-close>Schließen</button>
+        </div>
+    </dialog>
+
+    <script>
+        (function () {
+            var dialog = document.getElementById('lightbox');
+            if (!dialog || typeof dialog.showModal !== 'function') return;
+
+            var img = dialog.querySelector('.lightbox-img');
+            var closeTargets = dialog.querySelectorAll('[data-lightbox-close]');
+            var openers = document.querySelectorAll('[data-lightbox-open]');
+            var lastFocus = null;
+
+            dialog.addEventListener('close', function () {
+                img.removeAttribute('src');
+                img.alt = '';
+                if (lastFocus && typeof lastFocus.focus === 'function') {
+                    lastFocus.focus();
+                }
+                lastFocus = null;
+            });
+
+            function openLightbox(src, alt) {
+                lastFocus = document.activeElement;
+                img.src = src;
+                img.alt = alt || '';
+                dialog.showModal();
+                closeTargets[0].focus();
+            }
+
+            function closeLightbox() {
+                dialog.close();
+            }
+
+            openers.forEach(function (btn) {
+                btn.addEventListener('click', function () {
+                    var thumbImg = btn.querySelector('img');
+                    if (!thumbImg) return;
+                    var caption = (btn.getAttribute('aria-label') || '').replace(/^Größere Ansicht:\s*/, '');
+                    openLightbox(thumbImg.currentSrc || thumbImg.src, caption);
+                });
+            });
+
+            closeTargets.forEach(function (el) {
+                el.addEventListener('click', function () {
+                    closeLightbox();
+                });
+            });
+
+            var panel = dialog.querySelector('.lightbox-panel');
+            if (panel) {
+                panel.addEventListener('click', function (e) {
+                    if (e.target === panel) closeLightbox();
+                });
+            }
+        })();
+    </script>
 
 </body>
 
