@@ -106,9 +106,73 @@
 
         .cta-buttons {
             display: flex;
-            justify-content: center;
+            flex-direction: column;
+            align-items: center;
+            gap: 12px;
+        }
+
+        .cta-buttons > .btn-primary {
+            width: min(100%, 26rem);
+            text-align: center;
+            box-sizing: border-box;
+        }
+
+        /* Zwei schmale Download-Zeilen untereinander in einem Rahmen */
+        .download-stack {
+            display: flex;
+            flex-direction: column;
+            width: min(100%, 26rem);
+            border: 2px solid #555;
+            border-radius: 8px;
+            overflow: hidden;
+            background: transparent;
+        }
+
+        .download-stack__btn {
+            display: flex;
+            flex-direction: row;
             flex-wrap: wrap;
-            gap: 16px;
+            align-items: center;
+            justify-content: center;
+            gap: 6px 10px;
+            padding: 8px 12px;
+            min-height: 0;
+            color: #f5f5f5;
+            font-family: inherit;
+            font-size: 0.9rem;
+            font-weight: 600;
+            text-decoration: none;
+            background: transparent;
+            border: none;
+            border-radius: 0;
+            border-bottom: 1px solid #555;
+            transition: background 0.2s;
+        }
+
+        .download-stack__btn:last-child {
+            border-bottom: none;
+        }
+
+        .download-stack__btn:hover {
+            background: #2a2a2a;
+        }
+
+        .download-stack__btn .btn-filename {
+            font-size: 0.95rem;
+            font-weight: 600;
+            line-height: 1.2;
+            word-break: break-word;
+        }
+
+        .download-stack__btn .btn-caption {
+            font-size: 0.75rem;
+            font-weight: 500;
+            color: rgba(245, 245, 245, 0.65);
+            line-height: 1.2;
+        }
+
+        .download-stack__btn:focus-visible {
+            outline-offset: -2px;
         }
 
         .btn-primary {
@@ -343,6 +407,16 @@
             .product-shots {
                 padding: 0 20px 22px;
             }
+
+            .download-stack {
+                width: 100%;
+                max-width: 22rem;
+            }
+
+            .cta-buttons > .btn-primary {
+                width: 100%;
+                max-width: 22rem;
+            }
         }
 
         a:focus:not(:focus-visible),
@@ -372,9 +446,16 @@
                 CAD-Software, keine wochenlange Schulung – du arbeitest direkt auf deinem Rechner.</p>
 
             <div class="cta-buttons">
-                <a href="https://github.com/Michaelr885/Isomake-Landingpage/releases/latest/download/Isomake.exe"
-                    class="btn-secondary" download="Isomake.exe" target="_blank"
-                    rel="noopener noreferrer">Installer herunterladen (Isomake.exe)</a>
+                <div class="download-stack" role="group" aria-label="Installer-Downloads">
+                    <a href="https://github.com/Michaelr885/Isomake-Landingpage/releases/latest/download/Isomake.exe"
+                        class="download-stack__btn" download="Isomake.exe" target="_blank"
+                        rel="noopener noreferrer"><span class="btn-filename">Isomake.exe</span><span
+                            class="btn-caption">Installer herunterladen</span></a>
+                    <a href="https://github.com/Michaelr885/Isomake-Landingpage/releases/latest/download/Isomake_msi.msi"
+                        class="download-stack__btn" download="Isomake.msi" target="_blank"
+                        rel="noopener noreferrer"><span class="btn-filename">Isomake.msi</span><span
+                            class="btn-caption">Installer herunterladen</span></a>
+                </div>
                 <a href="mailto:kontakt@isomake.de?subject=Anfrage%20Isomake%20Desktop%20Abo&body=Hallo%20Michael,%0A%0Aich%20interessiere%20mich%20für%20Isomake%20als%20Desktop-Programm%20(Abonnement).%0A%0AMein%20Name:%0AMeine%20Firma:%0A%0AKurz%20zu%20meinem%20Einsatz:"
                     class="btn-primary">Testversion anfragen</a>
             </div>
